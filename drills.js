@@ -241,20 +241,25 @@ console.log(bfs(starShipTree));
 
   */
 
-function maxProfit(tree, maxVal=0) {
+function maxProfit(tree, profit=0, maxVal=0) {
   if (tree.right) {
-    maxVal = tree.right - tree;
-      maxProfit(tree.right, maxVal)
+    profit += tree.right.key - tree.key;
+    maxVal = maxVal < profit ? profit : maxVal ;
+    maxProfit(tree.right, profit, maxVal);
   }
-  if (tree.left) {
-    maxProfit(tree.left, maxVal)
+  else if (tree.left) {
+    profit = 0;
+    maxProfit(tree.left, profit, maxVal);
+  } 
+  else {
+    console.log(maxVal);
   }
-  return maxVal;
 }
 
-const sharePrices = [[128, 97, 121, 123, 98, 97, 105]]
+const sharePrices = [128, 97, 121, 123, 98, 97, 105]
 let moneyTree = new BST()
 sharePrices.forEach(num => {
   moneyTree.insert(num)
 })
-  console.log(maxProfit(moneyTree))
+
+maxProfit(moneyTree);
