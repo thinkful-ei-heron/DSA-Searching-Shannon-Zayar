@@ -241,6 +241,8 @@ console.log(bfs(starShipTree));
 
   */
 
+  //some bugs in this function still. When adding a number to tree that's bigger than root
+  // it does not work. Also, does not compare last two numbers in tree against eachother.
 function maxProfit(tree, profit=0, maxVal=0) {
   if (tree.right) {
     profit += tree.right.key - tree.key;
@@ -256,7 +258,7 @@ function maxProfit(tree, profit=0, maxVal=0) {
   }
 }
 
-const sharePrices = [128, 97, 121, 123, 98, 97, 105]
+const sharePrices = [128, 97, 121, 123, 98, 97, 105];
 let moneyTree = new BST()
 sharePrices.forEach(num => {
   moneyTree.insert(num)
